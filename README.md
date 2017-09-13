@@ -17,6 +17,7 @@ C'est une bibliothèque développée en Java et maintenu par
 
 Les concepts abordés :  
 * [Message](https://github.com/gkesse/ReadyJava/tree/master/Message "Message")  
+* [Variable](https://github.com/gkesse/ReadyJava/tree/master/Variable "Variable")  
 
 # Technologies
 

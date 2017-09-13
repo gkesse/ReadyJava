@@ -16,7 +16,7 @@ public class GMain {
 
 # Aperçu
 
-![Result](https://raw.githubusercontent.com/gkesse/ReadyJava/master/PushButton/img/Result.png)
+![Resultat](https://raw.githubusercontent.com/gkesse/ReadyJava/master/Message/img/Resultat.png)
 
 # Voir Aussi
 * [ReadyJava](https://github.com/gkesse/ReadyJava "ReadyJava")  
