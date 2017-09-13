@@ -40,3 +40,4 @@ public class GMain {
 # Voir Aussi
 * [ReadyJava](https://github.com/gkesse/ReadyJava "ReadyJava")  
 * [Message](https://github.com/gkesse/ReadyJava/tree/master/Message "Message")  
+* [Variable](https://github.com/gkesse/ReadyJava/tree/master/Variable "Variable")  
