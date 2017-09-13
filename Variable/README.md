@@ -1,6 +1,6 @@
 # Variable
 
-**<VarType> <VarName>** est la syntaxe de la déclaration des variables en Java.
+**VarType VarName** est la syntaxe de la déclaration des variables en Java.
 
 # Programme de Test
 
