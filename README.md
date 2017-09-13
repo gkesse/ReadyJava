@@ -11,7 +11,7 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 
 # ReadyJava
 
-**ReadyJava** est une bibliothèque de fonctions Java pour le développement d'applications Java.  
+**ReadyJava** est une bibliothèque de fonctions Java pour le développement d'applications en Java.  
 C'est une bibliothèque développée en Java et maintenu par 
 [Gerard KESSE](http://5.48.215.193:8855/presentation/ "Accédez à mon site web (ReadyDev)").
 
