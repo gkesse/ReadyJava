@@ -18,10 +18,14 @@ C'est une bibliothèque développée en Java et maintenu par
 Les concepts de base abordés :  
 * [Message](https://github.com/gkesse/ReadyJava/tree/master/Message "Message")  
 * [Variable](https://github.com/gkesse/ReadyJava/tree/master/Variable "Variable")  
+* [Clavier](https://github.com/gkesse/ReadyJava/tree/master/Clavier "Clavier")  
+* [Condition](https://github.com/gkesse/ReadyJava/tree/master/Condition "Condition")  
+* [Boucle](https://github.com/gkesse/ReadyJava/tree/master/Boucle "Boucle")  
+* [Tableau](https://github.com/gkesse/ReadyJava/tree/master/Tableau "Tableau")  
 
 Les concepts de la Programmation Orientée Objet abordés :  
 * [Classe](https://github.com/gkesse/ReadyJava/tree/master/Classe "Classe")  
-* [Variable & Methode Statiques](https://github.com/gkesse/ReadyJava/tree/master/Variable_Methode_Statique "Variable & Methode Statiques")  
+* [Variable Methode Statique](https://github.com/gkesse/ReadyJava/tree/master/Variable_Methode_Statique "Variable Methode Statique")  
 * [Héritage](https://github.com/gkesse/ReadyJava/tree/master/Heritage "Héritage")  
 
 # Technologies
