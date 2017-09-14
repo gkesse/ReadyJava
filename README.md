@@ -15,9 +15,14 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 C'est une bibliothèque développée en Java et maintenu par 
 [Gerard KESSE](http://5.48.215.193:8855/presentation/ "Accédez à mon site web (ReadyDev)").
 
-Les concepts abordés :  
+Les concepts de base abordés :  
 * [Message](https://github.com/gkesse/ReadyJava/tree/master/Message "Message")  
 * [Variable](https://github.com/gkesse/ReadyJava/tree/master/Variable "Variable")  
+
+Les concepts de la Programmation Orientée Objet abordés :  
+* [Classe](https://github.com/gkesse/ReadyJava/tree/master/Classe "Classe")  
+* [Variable & Methode Statiques](https://github.com/gkesse/ReadyJava/tree/master/Variable_Methode_Statique "Variable & Methode Statiques")  
+* [Héritage](https://github.com/gkesse/ReadyJava/tree/master/Heritage "Héritage")  
 
 # Technologies
 
