@@ -6,7 +6,7 @@ public class GPerson {
     //===============================================
     public GPerson() {
         m_name = "_NONE_";
-        m_age = 0;
+        m_age = -1;
     }
     //===============================================
     public GPerson(String name, int age) {
@@ -28,6 +28,13 @@ public class GPerson {
     //===============================================
     public int getAge() {
         return m_age;
+    }
+    //===============================================
+    public void print(String name) {
+        String m_data = "";
+        if(name != "") m_data += name + " : ";
+        m_data += "(" + m_name + " ; " + m_age + ")\n";
+        System.out.print(m_data);
     }
     //===============================================
 }
