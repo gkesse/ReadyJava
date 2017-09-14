@@ -32,6 +32,10 @@ Les concepts de la Programmation Orientée Objet abordés :
 * [Classe Abstraite](https://github.com/gkesse/ReadyJava/tree/master/Classe_Abstraite "Classe Abstraite")  
 * [Interface](https://github.com/gkesse/ReadyJava/tree/master/Interface "Interface")  
 * [Package](https://github.com/gkesse/ReadyJava/tree/master/Package "Package")  
+* [Exception](https://github.com/gkesse/ReadyJava/tree/master/Exception "Exception")  
+* [Enumeration](https://github.com/gkesse/ReadyJava/tree/master/Enumeration "Enumeration")  
+* [Collection](https://github.com/gkesse/ReadyJava/tree/master/Collection "Collection")  
+* [Générécité](https://github.com/gkesse/ReadyJava/tree/master/Generecite "Générécité")  
 
 # Technologies
 
