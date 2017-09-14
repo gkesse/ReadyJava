@@ -36,6 +36,22 @@ Les concepts de la Programmation Orientée Objet abordés :
 * [Enumeration](https://github.com/gkesse/ReadyJava/tree/master/Enumeration "Enumeration")  
 * [Collection](https://github.com/gkesse/ReadyJava/tree/master/Collection "Collection")  
 * [Générécité](https://github.com/gkesse/ReadyJava/tree/master/Generecite "Générécité")  
+* [Réflexivité](https://github.com/gkesse/ReadyJava/tree/master/Reflexivite "Réflexivité")  
+
+Les concepts des Interfaces Graphiques abordés :  
+* [Fenêtre](https://github.com/gkesse/ReadyJava/tree/master/Fenetre "Fenêtre")  
+* [Containeur](https://github.com/gkesse/ReadyJava/tree/master/Containeur "Containeur")  
+* [Bouton](https://github.com/gkesse/ReadyJava/tree/master/Bouton "Bouton")  
+* [Slider](https://github.com/gkesse/ReadyJava/tree/master/Slider "Slider")  
+* [Formulaire](https://github.com/gkesse/ReadyJava/tree/master/Formulaire "Formulaire")  
+* [Drag & Drop](https://github.com/gkesse/ReadyJava/tree/master/Drag_Drop "Drag & Drop")  
+* [Animation](https://github.com/gkesse/ReadyJava/tree/master/Animation "Animation")  
+* [Multithreading](https://github.com/gkesse/ReadyJava/tree/master/Multithreading "Multithreading")  
+* [Modèle Fork Join](https://github.com/gkesse/ReadyJava/tree/master/Fork_Joi "Modèle Fork Join")  
+
+Les concepts de la Gestion de Base de Données abordés :  
+* [Connexion JDBC](https://github.com/gkesse/ReadyJava/tree/master/JDBC "Connexion JDBC")  
+* [Modèle DAO](https://github.com/gkesse/ReadyJava/tree/master/DAO "Modèle DAO")  
 
 # Technologies
 
