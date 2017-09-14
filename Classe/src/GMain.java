@@ -2,10 +2,6 @@
 public class GMain {
     //===============================================
     public static void main(String[] args) {
-        class1();
-    }
-    //===============================================
-    public static void class1() {
         System.out.print("--------------------------------------------------\n");
         GPerson m_pers1 = new GPerson();
         GPerson m_pers2 = new GPerson("Gerard", 20);
