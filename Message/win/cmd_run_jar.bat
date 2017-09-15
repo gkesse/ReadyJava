@@ -2,9 +2,9 @@
 
 set PATH=C:\Program Files (x86)\Java\jdk1.8.0_77\bin
 
-set GBUILD=build
-set GLIBS=
+set GBIN=bin
+set GTARGET=%GBIN%/GProject.jar
 
 echo.
-java -cp %GBUILD% %GLIBS% GMain
+java -jar %GTARGET%
 echo.
