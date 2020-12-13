@@ -10,7 +10,7 @@ GMANIFEST = MANIFEST
 GSRCPATH =\
     $(GSRC) \
     
-all: clean compile java
+all: clean compile jar run
 
 compile:
 	@if not exist $(GBUILD) @mkdir $(GBUILD)
@@ -19,9 +19,9 @@ java:
 	@java -cp $(GBUILD) $(GMAINCLASS) $(argv)
 jar: 
 	@if not exist $(GBIN) @mkdir $(GBIN)
-	@jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD)
+	@jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD) .
 run: 
-	@$(GTARGET) $(argv)
+	@java -jar $(GTARGET) $(argv)
 clean: 
 	@if not exist $(GBIN) @mkdir $(GBIN)
 	@if not exist $(GBUILD) @mkdir $(GBUILD)
