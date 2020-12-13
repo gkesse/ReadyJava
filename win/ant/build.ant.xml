@@ -1,0 +1,30 @@
+<!--=============================================-->
+<project name="ReadyApp" basedir="." default="main">
+    <!--=============================================-->
+    <property name="GTARGET" value="gp_java"/>
+    <property name="GSRC" value="../../code/GProject/src"/>
+    <!--=============================================-->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+    <!--=============================================-->
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="${GSRC}" destdir="build/classes"/>
+    </target>
+    <!--=============================================-->
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/${GTARGET}.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="GMain"/>
+            </manifest>
+        </jar>
+    </target>
+    <!--=============================================-->
+    <target name="run">
+        <java jar="build/jar/${GTARGET}.jar" fork="true"/>
+    </target>
+    <!--=============================================-->
+</project>
+<!--=============================================-->
