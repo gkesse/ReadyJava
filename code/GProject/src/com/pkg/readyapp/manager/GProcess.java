@@ -1,4 +1,6 @@
 //===============================================
+package com.pkg.readyapp.manager;
+//===============================================
 public class GProcess {
     //===============================================
     private static GProcess m_intance = null;
