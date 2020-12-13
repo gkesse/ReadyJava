@@ -14,15 +14,15 @@ all: clean compile jar run
 
 compile:
 	@if not exist $(GBUILD) @mkdir $(GBUILD)
-	javac $(GMAINJAVA) -d $(GBUILD) -sourcepath $(GSRCPATH)
+	@javac $(GMAINJAVA) -d $(GBUILD) -sourcepath $(GSRCPATH)
 java:
 	@java -cp $(GBUILD) $(GMAINCLASS) $(argv)
 jar: 
 	@if not exist $(GBIN) @mkdir $(GBIN)
-	jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD) .
+	@jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD) .
 run: 
-	java -jar $(GTARGET) $(argv)
+	@java -jar $(GTARGET) $(argv)
 clean: 
 	@if not exist $(GBIN) @mkdir $(GBIN)
 	@if not exist $(GBUILD) @mkdir $(GBUILD)
-	del /s /q $(GBUILD)\*.class $(GBIN)\*.jar
+	@del /s /q $(GBUILD)\*.class $(GBIN)\*.jar
