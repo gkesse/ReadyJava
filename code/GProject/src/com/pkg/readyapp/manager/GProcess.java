@@ -21,16 +21,17 @@ public class GProcess {
     public void run(String[] args) {
         String lKey = "test";
         if(args.length > 0) lKey = args[0];
-        if(lKey == "test") {runTest(args); return;}
-        if(lKey == "ui") {runUi(args); return;}
+        if(lKey.equals("test")) {runTest(args); return;}
+        if(lKey.equals("ui")) {runUi(args); return;}
+        runTest(args); 
     }        
     //===============================================
     public void runTest(String[] args) {
-        System.out.print("runTest\n");
+        System.out.print(String.format("runTest\n"));
     }        
     //===============================================
     public void runUi(String[] args) {
-        System.out.print("runUi\n");
+        GProcessUi.Instance().run(args);
     }        
     //===============================================
 }
