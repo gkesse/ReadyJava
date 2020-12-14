@@ -31,6 +31,9 @@ public class GSQLiteUi {
             else if(G_STATE.equals("S_CONFIG_JAVA_SHOW_SCHEMA")) {run_CONFIG_JAVA_SHOW_SCHEMA(args);}
             else if(G_STATE.equals("S_CONFIG_JAVA_DELETE")) {run_CONFIG_JAVA_DELETE(args);}            //
             //
+            else if(G_STATE.equals("S_CONFIG_JAVA_DELETE_DATA_CONFIG_KEY")) {run_CONFIG_JAVA_DELETE_DATA_CONFIG_KEY(args);}            //
+            else if(G_STATE.equals("S_CONFIG_JAVA_DELETE_DATA")) {run_CONFIG_JAVA_DELETE_DATA(args);}            //
+            //
             else if(G_STATE.equals("S_SAVE")) {run_SAVE(args);}
             else if(G_STATE.equals("S_LOAD")) {run_LOAD(args);}
             else if(G_STATE.equals("S_QUIT")) {run_QUIT(args);}
@@ -60,6 +63,7 @@ public class GSQLiteUi {
         System.out.print(String.format("\t%-2s : %s\n", "2", "afficher les donnees CONFIG_JAVA"));
         System.out.print(String.format("\t%-2s : %s\n", "3", "afficher le schema CONFIG_JAVA"));
         System.out.print(String.format("\t%-2s : %s\n", "4", "supprimer la table CONFIG_JAVA"));        
+        System.out.print(String.format("\t%-2s : %s\n", "5", "supprimer une donnee CONFIG_JAVA"));        
         System.out.print(String.format("\n"));
         G_STATE = "S_CHOICE";
     }
@@ -76,6 +80,7 @@ public class GSQLiteUi {
         else if(lAnswer.equals("2")) {G_STATE = "S_CONFIG_JAVA_SHOW_DATA"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
         else if(lAnswer.equals("3")) {G_STATE = "S_CONFIG_JAVA_SHOW_SCHEMA"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
         else if(lAnswer.equals("4")) {G_STATE = "S_CONFIG_JAVA_DELETE"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
+        else if(lAnswer.equals("5")) {G_STATE = "S_CONFIG_JAVA_DELETE_DATA_CONFIG_KEY"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
         //
     }
     //===============================================
@@ -119,13 +124,37 @@ public class GSQLiteUi {
         G_STATE = "S_SAVE";
     }
     //===============================================
+    public void run_CONFIG_JAVA_DELETE_DATA_CONFIG_KEY(String[] args) {
+        String lLast = GConfig.Instance().getData("G_CONFIG_KEY");
+        String lAnswer = System.console().readLine(String.format("G_CONFIG_KEY (%s) ? : ", lLast));
+        if(lAnswer.equals("")) lAnswer = lLast;
+        if(lAnswer.equals("-q")) G_STATE = "S_END";
+        else if(lAnswer.equals("-i")) G_STATE = "S_INIT";
+        else if(lAnswer.equals("-a")) G_STATE = "S_ADMIN";
+        else if(lAnswer.equals("-v")) {G_STATE = "S_CONFIG_JAVA_DELETE_DATA";} 
+        else if(!lAnswer.equals("")) {G_STATE = "S_CONFIG_JAVA_DELETE_DATA"; GConfig.Instance().setData("G_CONFIG_KEY", lAnswer);} 
+    }
+    //===============================================
+    public void run_CONFIG_JAVA_DELETE_DATA(String[] args) {
+        String lKey = GConfig.Instance().getData("G_CONFIG_KEY");
+        String lQuery = String.format(""+
+        "delete from config_data\n"+
+        "where config_key = '%s'\n"+
+        "", lKey);
+        GSQLite.Instance().queryWrite(lQuery);
+        run_CONFIG_JAVA_SHOW_DATA(args);
+        G_STATE = "S_SAVE";
+    }
+    //===============================================
     public void run_SAVE(String[] args) {
         GConfig.Instance().saveData("G_SQLITE_ID");
+        GConfig.Instance().saveData("G_CONFIG_KEY");
         G_STATE = "S_QUIT";
     }
     //===============================================
     public void run_LOAD(String[] args) {
         GConfig.Instance().loadData("G_SQLITE_ID");
+        GConfig.Instance().loadData("G_CONFIG_KEY");
         G_STATE = "S_METHOD";
     }
     //===============================================
