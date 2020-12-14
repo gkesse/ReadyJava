@@ -27,7 +27,7 @@ public class GProcess {
     }        
     //===============================================
     public void runTest(String[] args) {
-        GSQLite.Instance().open();
+        GSQLite.Instance();
     }        
     //===============================================
     public void runUi(String[] args) {
