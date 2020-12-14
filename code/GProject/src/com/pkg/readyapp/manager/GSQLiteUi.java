@@ -46,7 +46,7 @@ public class GSQLiteUi {
         System.out.print(String.format("\t%-2s : %s\n", "-q", "quitter l'application"));
         System.out.print(String.format("\t%-2s : %s\n", "-i", "reinitialiser l'application"));
         System.out.print(String.format("\t%-2s : %s\n", "-a", "redemarrer l'application"));
-        System.out.print(String.format("\t%-2s : %s\n", "-v", "valider les configurations"));        System.out.print(String.format("\n"));
+        System.out.print(String.format("\t%-2s : %s\n", "-v", "valider les configurations"));        
         System.out.print(String.format("\n"));
         G_STATE = "S_LOAD";
     }
