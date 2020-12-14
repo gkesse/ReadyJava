@@ -68,7 +68,7 @@ public class GSQLite {
                 for(int i = 1; i <= lColCount; i++) {
                     if(i != 1) System.out.print(String.format(" | "));
                     String lName = lResultSetMetaData.getColumnName(i);
-                    int lWidth = GManager.Instance().getWidth(widthMap, i, defaultWidth);
+                    int lWidth = GManager.Instance().getWidth(widthMap, (i-1), defaultWidth);
                     System.out.print(String.format("%" + (lWidth) + "s", lName));
                 }
             }
