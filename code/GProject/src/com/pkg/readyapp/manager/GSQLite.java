@@ -1,6 +1,7 @@
 //===============================================
 package com.pkg.readyapp.manager;
 //===============================================
+import java.util.*;
 import java.sql.*;
 //===============================================
 public class GSQLite {
@@ -128,6 +129,113 @@ public class GSQLite {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    //===============================================
+    public String queryValue(String sqlQuery) {
+        String lData = "";
+
+        try {
+            Connection lConnection = open();
+            Statement lStatement = lConnection.createStatement();
+            ResultSet lResultSet = lStatement.executeQuery(sqlQuery);
+            
+            while (lResultSet.next()) {
+                lData = lResultSet.getString(1);
+                break;
+            }
+            
+            lResultSet.close();
+            lStatement.close();
+            lConnection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return lData;
+    }
+    //===============================================
+    public List<String> queryCol(String sqlQuery) {
+        List<String> lDataMap = new ArrayList<String>();
+        
+        try {
+            Connection lConnection = open();
+            Statement lStatement = lConnection.createStatement();
+            ResultSet lResultSet = lStatement.executeQuery(sqlQuery);
+
+            while (lResultSet.next()) {
+                String lData = lResultSet.getString(1);
+                lDataMap.add(lData);
+            }
+            
+            lResultSet.close();
+            lStatement.close();
+            lConnection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return lDataMap;
+    }
+    //===============================================
+    public List<String> queryRow(String sqlQuery) {
+        List<String> lDataMap = new ArrayList<String>();
+        
+        try {
+            Connection lConnection = open();
+            Statement lStatement = lConnection.createStatement();
+            ResultSet lResultSet = lStatement.executeQuery(sqlQuery);
+            ResultSetMetaData lResultSetMetaData = lResultSet.getMetaData();
+            int lColCount = lResultSetMetaData.getColumnCount();
+
+            while (lResultSet.next()) {
+                for(int i = 1; i <= lColCount; i++) {
+                    String lData = lResultSet.getString(i);
+                    lDataMap.add(lData);
+                }
+                break;
+            }
+            
+            lResultSet.close();
+            lStatement.close();
+            lConnection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return lDataMap;
+    }
+    //===============================================
+    public List<List<String>> queryMap(String sqlQuery) {
+        List<List<String>> lDataMap = new ArrayList<List<String>>();;
+        
+        try {
+            Connection lConnection = open();
+            Statement lStatement = lConnection.createStatement();
+            ResultSet lResultSet = lStatement.executeQuery(sqlQuery);
+            ResultSetMetaData lResultSetMetaData = lResultSet.getMetaData();
+            int lColCount = lResultSetMetaData.getColumnCount();
+
+            while (lResultSet.next()) {
+                List<String> lDataRow = new ArrayList<String>();
+                for(int i = 1; i <= lColCount; i++) {
+                    String lData = lResultSet.getString(i);
+                    lDataRow.add(lData);
+                }
+                lDataMap.add(lDataRow);
+            }
+            
+            lResultSet.close();
+            lStatement.close();
+            lConnection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return lDataMap;
     }
     //===============================================
 }
