@@ -18,10 +18,11 @@ public class GSQLite {
         queryWrite(lQuery);
         // tables
         lQuery = String.format(""+
-        "select * from sqlite_master\n"+
+        "select type, name, tbl_name, rootpage\n"+
+        "from sqlite_master\n"+
         "where type = 'table'\n"+
         "");
-        queryShow(lQuery, "10;10", 20);
+        queryShow(lQuery, "10", 20);
     }
     //===============================================
     public static synchronized GSQLite Instance() {           
