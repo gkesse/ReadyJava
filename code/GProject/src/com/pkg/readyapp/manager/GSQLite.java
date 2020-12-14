@@ -64,13 +64,11 @@ public class GSQLite {
             System.out.print(String.format("\n"));
             // header
             System.out.print(String.format("| "));
-            while (lResultSet.next()) {
-                for(int i = 1; i <= lColCount; i++) {
-                    if(i != 1) System.out.print(String.format(" | "));
-                    String lName = lResultSetMetaData.getColumnName(i);
-                    int lWidth = GManager.Instance().getWidth(widthMap, (i-1), defaultWidth);
-                    System.out.print(String.format("%" + (lWidth) + "s", lName));
-                }
+            for(int i = 1; i <= lColCount; i++) {
+                if(i != 1) System.out.print(String.format(" | "));
+                String lName = lResultSetMetaData.getColumnName(i);
+                int lWidth = GManager.Instance().getWidth(widthMap, (i-1), defaultWidth);
+                System.out.print(String.format("%" + (-lWidth) + "s", lName));
             }
             System.out.print(String.format(" |"));
             System.out.print(String.format("\n"));
@@ -85,6 +83,16 @@ public class GSQLite {
             }
             System.out.print(String.format("-+"));
             System.out.print(String.format("\n"));
+            // header
+            System.out.print(String.format("| "));
+            while (lResultSet.next()) {
+                for(int i = 1; i <= lColCount; i++) {
+                    if(i != 1) System.out.print(String.format(" | "));
+                    String lName = lResultSetMetaData.getColumnName(i);
+                    int lWidth = GManager.Instance().getWidth(widthMap, (i-1), defaultWidth);
+                    System.out.print(String.format("%" + (-lWidth) + "s", lName));
+                }
+            }
             //
             lResultSet.close();
             lStatement.close();
