@@ -42,7 +42,6 @@ public class GProcessUi {
     }
     //===============================================
     public void run_METHOD(String[] args) {
-        System.out.print(String.format("\n"));
         System.out.print(String.format("JAVA_ADMIN :\n"));
         System.out.print(String.format("\t%-2s : %s\n", "1", "S_SQLITE"));
         System.out.print(String.format("\n"));
@@ -60,7 +59,7 @@ public class GProcessUi {
     }
     //===============================================
     public void run_SQLITE(String[] args) {
-        System.out.print("run_SQLITE\n");
+        GSQLiteUi.Instance().run(args);
         G_STATE = "S_SAVE";
     }
     //===============================================

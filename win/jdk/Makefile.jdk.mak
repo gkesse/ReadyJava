@@ -25,4 +25,4 @@ run:
 clean: 
 	@if not exist $(GBIN) @mkdir $(GBIN)
 	@if not exist $(GBUILD) @mkdir $(GBUILD)
-	@del /s /q $(GBUILD)\*.class $(GBIN)\*.jar
+	@del /s /q $(GBIN)\*.jar
