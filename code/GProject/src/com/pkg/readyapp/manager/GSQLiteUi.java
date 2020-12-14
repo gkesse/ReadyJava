@@ -76,10 +76,12 @@ public class GSQLiteUi {
     }
     //===============================================
     public void run_SAVE(String[] args) {
+        GConfig.Instance().saveData("SQLITE_ADMIN_ID");
         G_STATE = "S_QUIT";
     }
     //===============================================
     public void run_LOAD(String[] args) {
+        GConfig.Instance().loadData("SQLITE_ADMIN_ID");
         G_STATE = "S_METHOD";
     }
     //===============================================

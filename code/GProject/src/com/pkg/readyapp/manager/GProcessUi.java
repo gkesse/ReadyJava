@@ -64,10 +64,12 @@ public class GProcessUi {
     }
     //===============================================
     public void run_SAVE(String[] args) {
-        G_STATE = "S_QUIT";
+        GConfig.Instance().saveData("JAVA_ADMIN_ID");
+        G_STATE = "S_END";
     }
     //===============================================
     public void run_LOAD(String[] args) {
+        GConfig.Instance().loadData("JAVA_ADMIN_ID");
         G_STATE = "S_METHOD";
     }
     //===============================================
