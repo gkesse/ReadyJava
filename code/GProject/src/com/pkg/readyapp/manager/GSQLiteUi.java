@@ -27,6 +27,9 @@ public class GSQLiteUi {
             else if(G_STATE.equals("S_CHOICE")) {run_CHOICE(args);}
             //
             else if(G_STATE.equals("S_SHOW_TABLES")) {run_SHOW_TABLES(args);}
+            else if(G_STATE.equals("S_CONFIG_JAVA_SHOW_DATA")) {run_CONFIG_JAVA_SHOW_DATA(args);}
+            else if(G_STATE.equals("S_CONFIG_JAVA_SHOW_SCHEMA")) {run_CONFIG_JAVA_SHOW_SCHEMA(args);}
+            else if(G_STATE.equals("S_CONFIG_JAVA_DELETE")) {run_CONFIG_JAVA_DELETE(args);}            //
             //
             else if(G_STATE.equals("S_SAVE")) {run_SAVE(args);}
             else if(G_STATE.equals("S_LOAD")) {run_LOAD(args);}
@@ -54,6 +57,10 @@ public class GSQLiteUi {
     public void run_METHOD(String[] args) {
         System.out.print(String.format("SQLITE_ADMIN :\n"));
         System.out.print(String.format("\t%-2s : %s\n", "1", "afficher les tables"));
+        System.out.print(String.format("\t%-2s : %s\n", "1", "afficher les tables"));
+        System.out.print(String.format("\t%-2s : %s\n", "2", "afficher les donnees CONFIG_JAVA"));
+        System.out.print(String.format("\t%-2s : %s\n", "3", "afficher le schema CONFIG_JAVA"));
+        System.out.print(String.format("\t%-2s : %s\n", "4", "supprimer la table CONFIG_JAVA"));        
         System.out.print(String.format("\n"));
         G_STATE = "S_CHOICE";
     }
@@ -66,22 +73,60 @@ public class GSQLiteUi {
         else if(lAnswer.equals("-i")) G_STATE = "S_INIT";
         else if(lAnswer.equals("-a")) G_STATE = "S_ADMIN";
         //
-        else if(lAnswer.equals("1")) {G_STATE = "S_SHOW_TABLES"; GConfig.Instance().setData("SQLITE_ADMIN_ID", lAnswer);} 
+        else if(lAnswer.equals("1")) {G_STATE = "S_SHOW_TABLES"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
+        else if(lAnswer.equals("2")) {G_STATE = "S_CONFIG_JAVA_SHOW_DATA"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
+        else if(lAnswer.equals("3")) {G_STATE = "S_CONFIG_JAVA_SHOW_SCHEMA"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
+        else if(lAnswer.equals("4")) {G_STATE = "S_CONFIG_JAVA_DELETE"; GConfig.Instance().setData("G_SQLITE_ID", lAnswer);} 
         //
     }
     //===============================================
     public void run_SHOW_TABLES(String[] args) {
-        System.out.print("run_SHOW_TABLES\n");
+        System.out.print(String.format("\n"));
+        String lQuery = String.format(""+
+        "select name from sqlite_master\n"+
+        "where type = 'table'\n"+
+        "");
+        GSQLite.Instance().queryShow(lQuery, "30", 20);
+        G_STATE = "S_SAVE";
+    }
+    //===============================================
+    public void run_CONFIG_JAVA_SHOW_DATA(String[] args) {
+        System.out.print(String.format("\n"));
+        String lQuery = String.format(""+
+        "select * from config_data\n"+
+        "");
+        GSQLite.Instance().queryShow(lQuery, "30;50", 20);
+        G_STATE = "S_SAVE";
+    }
+    //===============================================
+    public void run_CONFIG_JAVA_SHOW_SCHEMA(String[] args) {
+        System.out.print(String.format("\n"));
+        String lQuery = String.format(""+
+        "select sql from sqlite_master\n"+
+        "where type = 'table'\n"+
+        "and name = 'config_data'\n"+
+        "");
+        String lValue = GSQLite.Instance().queryValue(lQuery);
+        GManager.Instance().showData(lValue);
+        G_STATE = "S_SAVE";
+    }
+    //===============================================
+    public void run_CONFIG_JAVA_DELETE(String[] args) {
+        System.out.print(String.format("\n"));
+        String lQuery = String.format(""+
+        "drop table if exists config_data\n"+
+        "");
+        GSQLite.Instance().queryWrite(lQuery);
         G_STATE = "S_SAVE";
     }
     //===============================================
     public void run_SAVE(String[] args) {
-        GConfig.Instance().saveData("SQLITE_ADMIN_ID");
+        GConfig.Instance().saveData("G_SQLITE_ID");
         G_STATE = "S_QUIT";
     }
     //===============================================
     public void run_LOAD(String[] args) {
-        GConfig.Instance().loadData("SQLITE_ADMIN_ID");
+        GConfig.Instance().loadData("G_SQLITE_ID");
         G_STATE = "S_METHOD";
     }
     //===============================================

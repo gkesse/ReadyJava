@@ -64,7 +64,6 @@ public class GProcessUi {
     }
     //===============================================
     public void run_SAVE(String[] args) {
-        System.out.print(String.format("run_SAVE.................\n"));
         GConfig.Instance().saveData("JAVA_ADMIN_ID");
         G_STATE = "S_END";
     }
