@@ -49,12 +49,12 @@ public class GProcessUi {
     }
     //===============================================
     public void run_CHOICE(String[] args) {
-        String lLast = "1";
-        String lAnswer = System.console().readLine(String.format("CSHARP_ADMIN (%s) ? : ", lLast));
+        String lLast = GConfig.Instance().getData("JAVA_ADMIN_ID");
+        String lAnswer = System.console().readLine(String.format("JAVA_ADMIN (%s) ? : ", lLast));
         if(lAnswer.equals("")) lAnswer = lLast;
         if(lAnswer.equals("-q")) G_STATE = "S_END";
         //
-        else if(lAnswer.equals("1")) {G_STATE = "S_SQLITE";} 
+        else if(lAnswer.equals("1")) {G_STATE = "S_SQLITE"; GConfig.Instance().setData("JAVA_ADMIN_ID", lAnswer);} 
         //
     }
     //===============================================

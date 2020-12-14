@@ -59,12 +59,12 @@ public class GSQLiteUi {
     }
     //===============================================
     public void run_CHOICE(String[] args) {
-        String lLast = "1";
+        String lLast = GConfig.Instance().getData("SQLITE_ADMIN_ID");
         String lAnswer = System.console().readLine(String.format("SQLITE_ADMIN (%s) ? : ", lLast));
         if(lAnswer.equals("")) lAnswer = lLast;
         if(lAnswer.equals("-q")) G_STATE = "S_END";
         //
-        else if(lAnswer.equals("1")) {G_STATE = "S_SHOW_TABLES";} 
+        else if(lAnswer.equals("1")) {G_STATE = "S_SHOW_TABLES"; GConfig.Instance().setData("SQLITE_ADMIN_ID", lAnswer);} 
         //
     }
     //===============================================
