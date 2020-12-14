@@ -63,6 +63,8 @@ public class GSQLiteUi {
         String lAnswer = System.console().readLine(String.format("SQLITE_ADMIN (%s) ? : ", lLast));
         if(lAnswer.equals("")) lAnswer = lLast;
         if(lAnswer.equals("-q")) G_STATE = "S_END";
+        else if(lAnswer.equals("-i")) G_STATE = "S_INIT";
+        else if(lAnswer.equals("-a")) G_STATE = "S_ADMIN";
         //
         else if(lAnswer.equals("1")) {G_STATE = "S_SHOW_TABLES"; GConfig.Instance().setData("SQLITE_ADMIN_ID", lAnswer);} 
         //
