@@ -29,6 +29,20 @@ public class GManager {
     public sGManager getData() {
         return mgr;
     }
+ //===============================================
+    public void showData(String data) {
+        System.out.print(String.format("[%s]\n", data));
+    }
+    //===============================================
+    public void showData(String[] data) {
+        System.out.print(String.format("["));
+        for(int i = 0; i < data.length; i++) {
+            if(i != 0) System.out.print(String.format(" ; "));
+            String lData = data[i];
+            System.out.print(String.format("%s", lData));
+        }
+        System.out.print(String.format("\n"));
+    }
     //===============================================
     // env
     //===============================================
@@ -36,6 +50,17 @@ public class GManager {
         return System.getenv(key);
     }
     //===============================================
+    // string
+    //===============================================
+    public int getWidth(String widthMap, int index, int defaultWidth) {
+        String[] lWidthMap = widthMap.split(";");
+        int lLength = lWidthMap.length;
+        if(index >= lLength) return defaultWidth;
+        String lWidthId = lWidthMap[index]; int lOut;
+        if(!lWidthId.chars().allMatch(Character::isDigit)) return defaultWidth;
+        int lWidth = Integer.parseInt(lWidthId);
+        return lWidth;
+    }    //===============================================
     // struct
     //===============================================
     class sGManager {

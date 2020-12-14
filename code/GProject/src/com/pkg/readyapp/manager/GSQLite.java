@@ -9,12 +9,19 @@ public class GSQLite {
     //===============================================
     private GSQLite() {
         String lQuery;
+        // config_data
+        lQuery = String.format(""+
+        "create table if not exists config_data (\n"+
+        "config_key text,\n"+
+        "config_value text\n"+
+        ")");
+        queryWrite(lQuery);
         // tables
         lQuery = String.format(""+
         "select * from sqlite_master\n"+
         "where type = 'table'\n"+
         "");
-        queryShow(lQuery);
+        queryShow(lQuery, "10;10", 20);
     }
     //===============================================
     public static synchronized GSQLite Instance() {           
@@ -37,20 +44,62 @@ public class GSQLite {
         return lConnection;
     }
     //===============================================
-    public void queryShow(String sqlQuery) {
+    public void queryShow(String sqlQuery, String widthMap, int defaultWidth) {
         try {
             Connection lConnection = open();
             Statement lStatement = lConnection.createStatement();
             ResultSet lResultSet = lStatement.executeQuery(sqlQuery);
             ResultSetMetaData lResultSetMetaData = lResultSet.getMetaData();
             int lColCount = lResultSetMetaData.getColumnCount();
-            while (lResultSet.next()) {
-                for(int i = 0; i < lColCount; i++) {
-                    String lName = lResultSetMetaData.getColumnName(i);
-                    System.out.print(String.format("%s\n", lName));
+            // sep
+            System.out.print(String.format("+-"));
+            for(int i = 0; i < lColCount; i++) {
+                if(i != 0) System.out.print(String.format("-+-"));
+                int lWidth = GManager.Instance().getWidth(widthMap, i, defaultWidth);
+                for(int j = 0; j < lWidth; j++) {
+                    System.out.print(String.format("-"));
                 }
             }
+            System.out.print(String.format("-+"));
+            System.out.print(String.format("\n"));
+            // header
+            System.out.print(String.format("| "));
+            while (lResultSet.next()) {
+                for(int i = 1; i <= lColCount; i++) {
+                    if(i != 1) System.out.print(String.format(" | "));
+                    String lName = lResultSetMetaData.getColumnName(i);
+                    int lWidth = GManager.Instance().getWidth(widthMap, i, defaultWidth);
+                    System.out.print(String.format("%" + (lWidth) + "s", lName));
+                }
+            }
+            System.out.print(String.format(" |"));
+            System.out.print(String.format("\n"));
+            // sep
+            System.out.print(String.format("+-"));
+            for(int i = 0; i < lColCount; i++) {
+                if(i != 0) System.out.print(String.format("-+-"));
+                int lWidth = GManager.Instance().getWidth(widthMap, i, defaultWidth);
+                for(int j = 0; j < lWidth; j++) {
+                    System.out.print(String.format("-"));
+                }
+            }
+            System.out.print(String.format("-+"));
+            System.out.print(String.format("\n"));
+            //
             lResultSet.close();
+            lStatement.close();
+            lConnection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //===============================================
+    public void queryWrite(String sqlQuery) {
+        try {
+            Connection lConnection = open();
+            Statement lStatement = lConnection.createStatement();
+            lStatement.executeUpdate(sqlQuery);
             lStatement.close();
             lConnection.close();
         }
