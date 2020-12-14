@@ -83,16 +83,29 @@ public class GSQLite {
             }
             System.out.print(String.format("-+"));
             System.out.print(String.format("\n"));
-            // header
+            // data
             System.out.print(String.format("| "));
             while (lResultSet.next()) {
                 for(int i = 1; i <= lColCount; i++) {
                     if(i != 1) System.out.print(String.format(" | "));
-                    String lName = lResultSetMetaData.getColumnName(i);
+                    String lData = lResultSet.getString(i);
                     int lWidth = GManager.Instance().getWidth(widthMap, (i-1), defaultWidth);
-                    System.out.print(String.format("%" + (-lWidth) + "s", lName));
+                    System.out.print(String.format("%" + (-lWidth) + "s", lData));
                 }
             }
+            System.out.print(String.format(" |"));
+            System.out.print(String.format("\n"));
+            // sep
+            System.out.print(String.format("+-"));
+            for(int i = 0; i < lColCount; i++) {
+                if(i != 0) System.out.print(String.format("-+-"));
+                int lWidth = GManager.Instance().getWidth(widthMap, i, defaultWidth);
+                for(int j = 0; j < lWidth; j++) {
+                    System.out.print(String.format("-"));
+                }
+            }
+            System.out.print(String.format("-+"));
+            System.out.print(String.format("\n"));
             //
             lResultSet.close();
             lStatement.close();
