@@ -57,7 +57,6 @@ public class GSQLiteUi {
     public void run_METHOD(String[] args) {
         System.out.print(String.format("SQLITE_ADMIN :\n"));
         System.out.print(String.format("\t%-2s : %s\n", "1", "afficher les tables"));
-        System.out.print(String.format("\t%-2s : %s\n", "1", "afficher les tables"));
         System.out.print(String.format("\t%-2s : %s\n", "2", "afficher les donnees CONFIG_JAVA"));
         System.out.print(String.format("\t%-2s : %s\n", "3", "afficher le schema CONFIG_JAVA"));
         System.out.print(String.format("\t%-2s : %s\n", "4", "supprimer la table CONFIG_JAVA"));        
@@ -66,7 +65,7 @@ public class GSQLiteUi {
     }
     //===============================================
     public void run_CHOICE(String[] args) {
-        String lLast = GConfig.Instance().getData("SQLITE_ADMIN_ID");
+        String lLast = GConfig.Instance().getData("G_SQLITE_ID");
         String lAnswer = System.console().readLine(String.format("SQLITE_ADMIN (%s) ? : ", lLast));
         if(lAnswer.equals("")) lAnswer = lLast;
         if(lAnswer.equals("-q")) G_STATE = "S_END";
