@@ -60,7 +60,8 @@ public class GManager {
         if(!lWidthId.chars().allMatch(Character::isDigit)) return defaultWidth;
         int lWidth = Integer.parseInt(lWidthId);
         return lWidth;
-    }    //===============================================
+    }    
+    //===============================================
     // struct
     //===============================================
     class sGManager {
