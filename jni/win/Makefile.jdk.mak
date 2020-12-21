@@ -1,4 +1,4 @@
-GSRC = ..\..\code\readyapp\src
+GSRC = ..\code\readyapp\src
 GBIN = bin
 GBUILD = build
 GTARGET = $(GMAIN_JAR)
