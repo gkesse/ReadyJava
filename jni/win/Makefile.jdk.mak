@@ -26,7 +26,8 @@ GOBJS_GEN =\
 GCFLAGS =\
     -std=gnu++11 \
     
-all: clean_all cpp_gen compile jar run
+all: clean compile jar run
+cpp: cpp_clean cpp_gen cpp_compile
 
 cpp_gen:
 	@javac -h $(GGEN_CPP_INC) -d $(GGEN_CLASS) $(GMAIN_JAVA)
@@ -36,6 +37,9 @@ cpp_compile: $(GOBJS_GEN)
 $(GGEN_BUILD)/%.o: $(GGEN_CPP_SRC)/%.cpp
 	@if not exist $(GGEN_BUILD) ( mkdir $(GGEN_BUILD) )
 	g++ $(GCFLAGS) -c $< -o $@ $(GINCS)
+cpp_clean: 
+	@if not exist $(GGEN) ( mkdir $(GGEN) )
+	@del /s /q $(GGEN)\*.h $(GGEN)\*.o $(GGEN)\*.dll 
 compile:
 	@if not exist $(GBUILD) ( mkdir $(GBUILD) )
 	@javac $(GMAIN_JAVA) -d $(GBUILD) -sourcepath $(GSRC)
@@ -45,11 +49,6 @@ jar:
 run: 
 	@java $(GMAIN_CLASS) $(argv)
 clean: 
-	@if not exist $(GBIN) ( mkdir $(GBIN) )
-	@if not exist $(GBUILD) mkdir $(GBUILD) )
-	@del /s /q $(GTARGET)
-clean_all: 
 	@if not exist $(GBUILD) ( mkdir $(GBUILD) )
 	@if not exist $(GBIN) ( mkdir $(GBIN) )
-	@if not exist $(GGEN) ( mkdir $(GGEN) )
-	@del /s /q $(GBUILD)\*.class $(GBIN)\*.jar $(GGEN)\*
+	@del /s /q $(GBUILD)\*.class $(GTARGET)
