@@ -7,14 +7,11 @@ GMAIN_JAVA = $(GSRC)\com\pkg\readyapp\GMain.java
 GMAIN_CLASS = com.pkg.readyapp.GMain
 GMANIFEST = MANIFEST
 
-GSRCPATH =\
-    $(GSRC) \
-
 all: clean compile jar run
 
 compile:
 	@if not exist $(GBUILD) @mkdir $(GBUILD)
-	@javac $(GMAIN_JAVA) -d $(GBUILD) -sourcepath $(GSRCPATH)
+	@javac $(GMAIN_JAVA) -d $(GBUILD) -sourcepath $(GSRC)
 jar: 
 	@if not exist $(GBIN) @mkdir $(GBIN)
 	@jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD) .
