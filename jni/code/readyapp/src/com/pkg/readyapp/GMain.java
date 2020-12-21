@@ -6,13 +6,13 @@ package com.pkg.readyapp;
 public class GMain {
     //===============================================
     static {
-        System.loadLibrary("hello");
+        System.loadLibrary("rdcpp");
     }
     //===============================================
-    private native void sayHello();
+    private native void run();
     //===============================================
     public static void main(String[] args){
-        System.out.print(String.format("%s\n", "Bonjour tout le monde"));
+        new GMain().run();
     }
 }
 //===============================================
