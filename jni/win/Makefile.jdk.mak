@@ -8,7 +8,6 @@ GGEN_CPP_INC = $(GGEN)\cpp\include
 GGEN_LIB_PATH = $(GGEN)\lib
 GGEN_LIB_NAME = $(GGEN_LIB_PATH)\rdcpp.dll
 GGEN_BUILD = $(GGEN)\build
-GGEN_DEF = $(GGEN)\gen.def
 GTARGET = $(GMAIN_JAR)
 
 GMAIN_JAVA = $(GSRC)\com\pkg\readyapp\GMain.java
@@ -30,25 +29,25 @@ all: cpp clean compile jar run
 cpp: cpp_clean cpp_gen cpp_compile
 
 cpp_gen:
-	@javac -h $(GGEN_CPP_INC) -d $(GGEN_CLASS) $(GMAIN_JAVA)
+	javac -h $(GGEN_CPP_INC) -d $(GGEN_CLASS) $(GMAIN_JAVA)
 cpp_compile: $(GOBJS_GEN)
 	@if not exist $(GGEN_LIB_PATH) ( mkdir $(GGEN_LIB_PATH) )
-	@g++ -shared -o $(GGEN_LIB_NAME) $(GOBJS_GEN) $(GGEN_DEF)
+	g++ -shared -o $(GGEN_LIB_NAME) $(GOBJS_GEN)
 $(GGEN_BUILD)/%.o: $(GGEN_CPP_SRC)/%.cpp
 	@if not exist $(GGEN_BUILD) ( mkdir $(GGEN_BUILD) )
-	@g++ $(GCFLAGS) -c $< -o $@ $(GINCS)
+	g++ $(GCFLAGS) -c $< -o $@ $(GINCS)
 cpp_clean: 
 	@if not exist $(GGEN) ( mkdir $(GGEN) )
-	@del /s /q $(GGEN)\*.h $(GGEN)\*.o $(GGEN)\*.dll 
+	del /s /q $(GGEN)\*.h $(GGEN)\*.o $(GGEN)\*.dll 
 compile:
 	@if not exist $(GBUILD) ( mkdir $(GBUILD) )
-	@javac $(GMAIN_JAVA) -d $(GBUILD) -sourcepath $(GSRC)
+	javac $(GMAIN_JAVA) -d $(GBUILD) -sourcepath $(GSRC)
 jar: 
 	@if not exist $(GBIN) ( mkdir $(GBIN) )
-	@jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD) .
+	jar cfm $(GTARGET) $(GMANIFEST) -C $(GBUILD) .
 run: 
-	@java $(GMAIN_CLASS) $(argv)
+	java $(GMAIN_CLASS) $(argv)
 clean: 
 	@if not exist $(GBUILD) ( mkdir $(GBUILD) )
 	@if not exist $(GBIN) ( mkdir $(GBIN) )
-	@del /s /q $(GBUILD)\*.class $(GBIN)\*.jar
+	del /s /q $(GBUILD)\*.class $(GBIN)\*.jar
