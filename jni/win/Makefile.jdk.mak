@@ -26,7 +26,7 @@ GOBJS_GEN =\
 GCFLAGS =\
     -std=gnu++11 \
     
-all: clean compile jar run
+all: cpp clean compile jar run
 cpp: cpp_clean cpp_gen cpp_compile
 
 cpp_gen:
@@ -36,7 +36,7 @@ cpp_compile: $(GOBJS_GEN)
 	@g++ -shared -o $(GGEN_LIB_NAME) $(GOBJS_GEN) $(GGEN_DEF)
 $(GGEN_BUILD)/%.o: $(GGEN_CPP_SRC)/%.cpp
 	@if not exist $(GGEN_BUILD) ( mkdir $(GGEN_BUILD) )
-	g++ $(GCFLAGS) -c $< -o $@ $(GINCS)
+	@g++ $(GCFLAGS) -c $< -o $@ $(GINCS)
 cpp_clean: 
 	@if not exist $(GGEN) ( mkdir $(GGEN) )
 	@del /s /q $(GGEN)\*.h $(GGEN)\*.o $(GGEN)\*.dll 
@@ -51,4 +51,4 @@ run:
 clean: 
 	@if not exist $(GBUILD) ( mkdir $(GBUILD) )
 	@if not exist $(GBIN) ( mkdir $(GBIN) )
-	@del /s /q $(GBUILD)\*.class $(GTARGET)
+	@del /s /q $(GBUILD)\*.class $(GBIN)\*.jar

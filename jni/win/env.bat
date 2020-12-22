@@ -1,7 +1,8 @@
 @echo off
 ::===============================================
-set "PATH=C:\MinGW\bin;%PATH%"
+set "PATH=C:\TDM-GCC-64\bin;%PATH%"
 set "PATH=C:\Program Files\Java\jdk-11.0.1\bin;%PATH%"
+set "PATH=C:\Users\Admin\Downloads\Programs\ReadyJava\jni\win\gen\lib;%PATH%"
 ::===============================================
 set "GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs"
 set "GPROJECT_PATH=%GPROJECT_ROOT%\ReadyJava"
