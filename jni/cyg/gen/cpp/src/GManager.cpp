@@ -30,6 +30,17 @@ sGManager* GManager::getData() {
     return mgr;
 }
 //===============================================
+void GManager::showData(std::vector<std::string> data) {
+    printf("[");
+    for(int i = 0; i < data.size(); i++)  {
+        if(i != 0) {printf(" ; ");}
+        std::string lData = data[i];
+        printf("%s", lData.c_str());
+    }
+    printf("]");
+    printf("\n");
+}
+//===============================================
 // args
 //===============================================
 void GManager::loadArgs(JNIEnv *env, jobjectArray arr) {
@@ -39,6 +50,5 @@ void GManager::loadArgs(JNIEnv *env, jobjectArray arr) {
         std::string lArgv = env->GetStringUTFChars(lData, NULL);
         mgr->app->args.push_back(lArgv);
     }
-    mgr->app->argc = (int)lArgc;
 }
 //===============================================

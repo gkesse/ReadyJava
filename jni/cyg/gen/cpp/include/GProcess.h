@@ -12,6 +12,9 @@ public:
     ~GProcess();
     static GProcess* Instance();
     void run();
+    void runTest();
+    void runUi();
+    void runQt();
     
 private:
     static GProcess* m_instance;

@@ -16,6 +16,7 @@ public:
     static GManager* Instance();
     // data
     sGManager* getData();
+    void showData(std::vector<std::string> data);
     // args
     void loadArgs(JNIEnv *env, jobjectArray arr);
     
@@ -32,7 +33,6 @@ struct _sGApp {
     // app
     std::string app_name;
     // args
-    int argc;
     std::vector<std::string> args;
 };
 //===============================================

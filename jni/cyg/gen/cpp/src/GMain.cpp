@@ -1,12 +1,13 @@
 //===============================================
 #include "com_pkg_readyapp_GMain.h" 
 //===============================================
-#include <jni.h>
-#include <iostream>
+#include "GManager.h"
+#include "GProcess.h"
 //===============================================
 JNIEXPORT void JNICALL 
 Java_com_pkg_readyapp_GMain_run(JNIEnv *env, jobject obj, jobjectArray arr) {
-    //GManager::Instance()->loadArgs(env, arr);
-    printf("Bonjour tout le monde\n");
+    sGApp* lApp = GManager::Instance()->getData()->app;
+    GManager::Instance()->loadArgs(env, arr);
+    GProcess::Instance()->run();
 }
 //===============================================
