@@ -28,7 +28,7 @@ GCFLAGS =\
     -std=gnu++11 \
     
 all: cpp clean compile jar run
-cpp: cpp_gen cpp_compile
+cpp: cpp_clean cpp_gen cpp_compile
 
 cpp_gen:
 	javac -h $(GGEN_CPP_INC_GEN) -d $(GGEN_CLASS) $(GMAIN_JAVA)

@@ -32,13 +32,13 @@ sGManager* GManager::getData() {
 //===============================================
 // args
 //===============================================
-void GManager::loadArgs(JNIEnv *env, jobject obj, jobjectArray arr) {
+void GManager::loadArgs(JNIEnv *env, jobjectArray arr) {
     jsize lArgc = env->GetArrayLength(arr);
     for(int i = 0; i < lArgc; i++) {
         jstring lData = (jstring)env->GetObjectArrayElement(arr, i);
         std::string lArgv = env->GetStringUTFChars(lData, NULL);
-        mgr->app->argv.push_back(lArgv);
+        mgr->app->args.push_back(lArgv);
     }
-    mgr->app->argc = lArgc;
+    mgr->app->argc = (int)lArgc;
 }
 //===============================================
