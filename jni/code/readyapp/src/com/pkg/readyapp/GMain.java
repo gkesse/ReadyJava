@@ -7,10 +7,10 @@ public class GMain {
         System.loadLibrary("rdcpp");
     }
     //===============================================
-    private native void run();
+    private native void run(String[] args);
     //===============================================
     public static void main(String[] args){
-        new GMain().run();
+        new GMain().run(args);
     }
     //===============================================
 }

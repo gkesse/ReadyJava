@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_pkg_readyapp_GMain
  * Method:    run
- * Signature: ()V
+ * Signature: ([Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_pkg_readyapp_GMain_run
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, jobjectArray);
 
 #ifdef __cplusplus
 }

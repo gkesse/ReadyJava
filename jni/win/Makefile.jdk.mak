@@ -5,6 +5,7 @@ GGEN = gen
 GGEN_CLASS = $(GGEN)\class
 GGEN_CPP_SRC = $(GGEN)\cpp\src
 GGEN_CPP_INC = $(GGEN)\cpp\include
+GGEN_CPP_INC_GEN = $(GGEN)\cpp\include\gen
 GGEN_LIB_PATH = $(GGEN)\lib
 GGEN_LIB_NAME = $(GGEN_LIB_PATH)\rdcpp.dll
 GGEN_BUILD = $(GGEN)\build
@@ -16,6 +17,7 @@ GMANIFEST = MANIFEST
 
 GINCS =\
     -I$(GGEN_CPP_INC) \
+    -I$(GGEN_CPP_INC_GEN) \
     -I"C:\Program Files\Java\jdk-11.0.1\include" \
     -I"C:\Program Files\Java\jdk-11.0.1\include\win32" \
 
@@ -26,10 +28,10 @@ GCFLAGS =\
     -std=gnu++11 \
     
 all: cpp clean compile jar run
-cpp: cpp_clean cpp_gen cpp_compile
+cpp: cpp_gen cpp_compile
 
 cpp_gen:
-	javac -h $(GGEN_CPP_INC) -d $(GGEN_CLASS) $(GMAIN_JAVA)
+	javac -h $(GGEN_CPP_INC_GEN) -d $(GGEN_CLASS) $(GMAIN_JAVA)
 cpp_compile: $(GOBJS_GEN)
 	@if not exist $(GGEN_LIB_PATH) ( mkdir $(GGEN_LIB_PATH) )
 	g++ -shared -o $(GGEN_LIB_NAME) $(GOBJS_GEN)
@@ -38,7 +40,7 @@ $(GGEN_BUILD)/%.o: $(GGEN_CPP_SRC)/%.cpp
 	g++ $(GCFLAGS) -c $< -o $@ $(GINCS)
 cpp_clean: 
 	@if not exist $(GGEN) ( mkdir $(GGEN) )
-	del /s /q $(GGEN)\*.h $(GGEN)\*.o $(GGEN)\*.dll 
+	del /s /q $(GGEN_CPP_INC_GEN)\*.h $(GGEN)\*.o $(GGEN)\*.dll 
 compile:
 	@if not exist $(GBUILD) ( mkdir $(GBUILD) )
 	javac $(GMAIN_JAVA) -d $(GBUILD) -sourcepath $(GSRC)
